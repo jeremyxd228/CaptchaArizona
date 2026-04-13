@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A1A1A">
+
+    <!-- Main content -->
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Control time display -->
+        <TextView
+            android:id="@+id/tvControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Control [-.---s]"
+            android:textColor="#7AB8F5"
+            android:textSize="15sp"
+            android:fontFamily="monospace"
+            android:paddingBottom="6dp"/>
+
+        <!-- Divider -->
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#333333" android:layout_marginBottom="8dp"/>
+
+        <!-- Top buttons row: N, Payday, Fast, Cam, Stop, Lag, Chat, OldCaptcha -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button android:id="@+id/btnN"
+                style="@style/KeyButton"
+                android:text="N"
+                android:backgroundTint="#2A5C2A"
+                android:layout_weight="1"/>
+
+            <Button android:id="@+id/btnPayday"
+                style="@style/KeyButton"
+                android:text="Payday"
+                android:layout_weight="2"/>
+
+            <Button android:id="@+id/btnFast"
+                style="@style/KeyButton"
+                android:text="Fast"
+                android:layout_weight="1.5"/>
+
+            <Button android:id="@+id/btnCam"
+                style="@style/KeyButton"
+                android:text="Cam"
+                android:layout_weight="1.5"/>
+
+            <Button android:id="@+id/btnStop"
+                style="@style/KeyButton"
+                android:text="Stop"
+                android:backgroundTint="#5C2A2A"
+                android:layout_weight="1.5"/>
+
+            <Button android:id="@+id/btnLag"
+                style="@style/KeyButton"
+                android:text="Lag"
+                android:layout_weight="1.5"/>
+
+            <Button android:id="@+id/btnChat"
+                style="@style/KeyButton"
+                android:text="Chat"
+                android:layout_weight="1.5"/>
+
+            <Button android:id="@+id/btnOldCaptcha"
+                style="@style/KeyButton"
+                android:text="Old Captcha"
+                android:layout_weight="2.5"/>
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#333333" android:layout_marginBottom="8dp"/>
+
+        <!-- Stats block -->
+        <TextView
+            android:id="@+id/tvPercent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Процент верных капч: 0%"
+            android:textColor="#DDDDDD"
+            android:textSize="13sp"
+            android:fontFamily="monospace"/>
+
+        <TextView
+            android:id="@+id/tvAvgTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Средний ввод: 0.000s"
+            android:textColor="#DDDDDD"
+            android:textSize="13sp"
+            android:fontFamily="monospace"/>
+
+        <TextView
+            android:id="@+id/tvAvgFirst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Средний ввод первого символа: 0.000s"
+            android:textColor="#DDDDDD"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvBestTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Лучшее время: —"
+            android:textColor="#F5A623"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Divider -->
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#333333" android:layout_marginBottom="8dp"/>
+
+        <!-- LOG -->
+        <ScrollView
+            android:id="@+id/scrollLog"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#111111"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:lineSpacingMultiplier="1.3"
+                android:textIsSelectable="true"/>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!-- CAPTCHA DIALOG OVERLAY -->
+    <LinearLayout
+        android:id="@+id/layoutCaptchaDialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#2B2B2B"
+            android:padding="20dp">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Проверка на робота"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="6dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Введите 5 символов, которые видно на вашем экране"
+                android:textColor="#AAAAAA"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginBottom="14dp"/>
+
+            <!-- Timer bar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:progressTint="#4EC994"
+                android:progressBackgroundTint="#333333"
+                android:layout_marginBottom="14dp"/>
+
+            <!-- Captcha code display -->
+            <TextView
+                android:id="@+id/tvCaptchaCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12345"
+                android:textSize="46sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:letterSpacing="0.3"
+                android:background="#1A1A1A"
+                android:padding="10dp"
+                android:layout_marginBottom="14dp"/>
+
+            <!-- Input field -->
+            <EditText
+                android:id="@+id/etInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Введите код"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#666666"
+                android:textSize="22sp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:letterSpacing="0.2"
+                android:background="#1A1A1A"
+                android:padding="10dp"
+                android:maxLength="5"
+                android:inputType="number"
+                android:imeOptions="actionDone"
+                android:enabled="false"
+                android:layout_marginBottom="14dp"/>
+
+            <!-- Status -->
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#4EC994"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- Accept / Cancel buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAccept"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Принять"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#2A5C2A"
+                    android:layout_marginEnd="6dp"/>
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Отмена"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#5C2A2A"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
